@@ -1,0 +1,12 @@
+zakladna doska
+graficka karta
+procesor
+ram
+usb
+hdmi
+monitor
+klavesnica
+opticka mys
+pevny disk
+ssd
+
