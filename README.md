@@ -1,7 +1,7 @@
 <h1>Hangman</h1>
 <h2>Description</h2>
 <p>
-  GUI aplikácia s možnosťou výberu obtiažnosti a zápisom skore do súboru s využitím serializácie.
+  GUI aplikácia s možnosťou výberu obtiažnosti, zápisom skore do súboru a využitím serializácie.
 </p>
 <h2>Used language&frameworks&tools</h2>
 <ul>
