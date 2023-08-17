@@ -3,7 +3,7 @@
 <p>
   GUI aplikácia s možnosťou výberu obtiažnosti, zápisom skore do súboru a využitím serializácie.
 </p>
-<h2>Used language&frameworks&tools</h2>
+<h2>Language & frameworks & tools</h2>
 <ul>
   <li>Java</li>
   <li>Java Swing</li>
