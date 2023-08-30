@@ -35,12 +35,12 @@ public class Skore implements Serializable {
     
     
     public String vypis() {
-        String text = "  Meno                                  Body";      
+        StringBuilder text = new StringBuilder("  Meno                                  Body");
         for (Map.Entry<String, Integer> entry: this.hraci.entrySet()) {
-            text += "\n";
-            text += "  " + entry.getKey() + "                                  " + entry.getValue();           
+            text.append("\n");
+            text.append("  ").append(entry.getKey()).append("                                  ").append(entry.getValue());
         }
-        return text;
+        return text.toString();
     }
     
     

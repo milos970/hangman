@@ -18,9 +18,8 @@ public class Kategoria {
     private String nazov;
     private final ArrayList<String> slova;
     private int pocetSlov;
-    private final int [] pouziteIndexy;
-    
-            
+
+
     public Kategoria(String cestaKSuboru) throws FileNotFoundException {
         File file = new File(cestaKSuboru);
         try (Scanner scanner = new Scanner(file)) {
@@ -41,10 +40,8 @@ public class Kategoria {
                 this.slova.add(line);
                 this.pocetSlov++;
             }
-            scanner.close();
         }
-        this.pouziteIndexy = new int[this.pocetSlov];
-    }   
+    }
     
     
     public String getSlovo(int index) {

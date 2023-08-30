@@ -25,8 +25,6 @@ public class Zoznam {
     
     /**
      * da kategoriu podla jej názvu
-     * @param nazov
-     * @return 
      */
     public Kategoria getKategoriu (String nazov) {
         if (!this.kategorie.containsKey(nazov)) {
@@ -37,8 +35,6 @@ public class Zoznam {
     
     /**
      * da kategoriu podla slova ktoré sa v nej nachádza
-     * @param slovo
-     * @return 
      */
     public Kategoria getKategoriuPodlaSlova(String slovo) {
         String[] categories = this.getVsetkyKategorie();

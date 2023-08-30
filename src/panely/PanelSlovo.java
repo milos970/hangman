@@ -46,7 +46,6 @@ public class PanelSlovo extends JPanel implements IPanely {
     
     /**
      * vykreslí na panel pocet ciar na znaky slova
-     * @param pocet 
      */
     public void pocetCiar(int[] pocet) {
         this.pocetCiar = pocet;

@@ -5,14 +5,9 @@
  */
 package obesenec;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import ponuka.Skore;
+
+import java.io.*;
 
 /**
  *
@@ -20,7 +15,7 @@ import ponuka.Skore;
  */
 public class Ukladanie {
     
-    public static void zapis(Skore skore) throws FileNotFoundException, IOException {
+    public static void zapis(Skore skore) throws IOException {
         File subor = new File("save/Skore.bin");
         FileOutputStream stream = new FileOutputStream(subor);
         try (ObjectOutputStream zapis = new ObjectOutputStream(stream)) {
@@ -28,7 +23,7 @@ public class Ukladanie {
         }
     }
     
-    public static Skore nacitaj() throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static Skore nacitaj() throws IOException, ClassNotFoundException {
         Skore skore;
         File subor = new File("save/Skore.bin");
         if (subor.length() == 0) { // pokial je dany súbor prázdny tak sa nič nepokúša načítať

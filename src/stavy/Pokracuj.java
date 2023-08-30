@@ -44,17 +44,13 @@ public class Pokracuj extends StavHry  implements ActionListener {
     
     /** 
      * spusti hru po kliknuti mysou na button
-     * @param e 
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         this.hra.start();
     }
     
-    /**
-     *
-     * @param hra
-     */
+
     @Override
     public void vlozHru(Hra hra) {
         this.hra = hra;

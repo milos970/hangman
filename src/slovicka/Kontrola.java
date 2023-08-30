@@ -48,12 +48,12 @@ public class Kontrola {
             }
         }
 
-        for (int j = 0; j < this.abeceda.length; j++) {
+        for (char c : this.abeceda) {
             for (int i = 0; i < this.slovo.length; i++) {
-                if (this.abeceda[j] == slovo[i]) {
-                    this.znakySlova.add(slovo[i]); 
+                if (c == slovo[i]) {
+                    this.znakySlova.add(slovo[i]);
                 }
-            }            
+            }
         }      
     }
     
@@ -94,7 +94,7 @@ public class Kontrola {
      nájde súradnicu uhádnutého znaku
      daný znak vloží do pola medzi ostatné
     */
-    private void suradniceZnakov() throws IOException {    
+    private void suradniceZnakov() {
         int[] suradnice1 = new int[this.pocetZnakov.length];   
         for (int i = 0; i < this.slovo.length ; i++) {           
             if (this.uhadnutyZnak == this.slovo[i]) {

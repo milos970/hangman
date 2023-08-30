@@ -6,31 +6,25 @@
 package gui;
 
 
-import stavy.StavHry;
-import obesenec.Ukladanie;
-import enumy.StavyHry;
-import enumy.Obtiaznost;
 import enumy.Farba;
-import panely.PanelSlovo;
-import panely.PanelKlavesnica;
-import panely.PanelHangMan;
-import panely.PanelCasovac;
-import panely.PanelPokusy;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
+import enumy.Obtiaznost;
+import enumy.StavyHry;
+import obesenec.Ukladanie;
+import panely.*;
 import ponuka.Skore;
 import slovicka.Kategoria;
 import slovicka.Kontrola;
 import slovicka.Zoznam;
+import stavy.StavHry;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -44,28 +38,21 @@ public class Hra extends javax.swing.JFrame {
     private PanelCasovac casovac;
     private PanelKlavesnica klavesnica;
     private PanelPokusy pokusy;
-    private Zoznam zoznam;
+    private final Zoznam zoznam;
     private int pocetHier;
     private int pocetSlov;
-    private String[] nazvyKategorii;
-    private List list;
-    private Color color;
+    private final List list;
+    private final Color color;
     private final String meno;
     private boolean koniec;
-    private Skore skore;
+    private final Skore skore;
     private int pocetPokusov;
-    private HlavneMenu menu;
+    private final HlavneMenu menu;
     private int bonusoveBody;
     private boolean priratajBody;
     
     /**
      * Creates new form HlavneMenu
-     * @param meno
-     * @param obtiaznost
-     * @param color
-     * @param skore
-     * @param menu
-     * @throws java.io.IOException
      */
     
     public Hra(String meno, String obtiaznost, Color color, Skore skore, HlavneMenu menu) throws IOException {
@@ -100,9 +87,9 @@ public class Hra extends javax.swing.JFrame {
         this.zoznam.pridajKategoriu(new Kategoria("src/subory_slovicok/Hardware.txt"));
         this.zoznam.pridajKategoriu(new Kategoria("src/subory_slovicok/Software.txt"));
 
-        this.nazvyKategorii = this.zoznam.getVsetkyKategorie();
+        String[] nazvyKategorii = this.zoznam.getVsetkyKategorie();
 
-        for (String nazvyKategorii1 : this.nazvyKategorii) {
+        for (String nazvyKategorii1 : nazvyKategorii) {
             Kategoria kategoria = this.zoznam.getKategoriu(nazvyKategorii1);
             this.pocetSlov += kategoria.getPocetSlov();
         }
@@ -110,7 +97,7 @@ public class Hra extends javax.swing.JFrame {
 
         ArrayList<String> nahodneSlova = new ArrayList<>();
 
-        for (String nazvyKategorii1 : this.nazvyKategorii) {
+        for (String nazvyKategorii1 : nazvyKategorii) {
             Kategoria kategoria = this.zoznam.getKategoriu(nazvyKategorii1);
             for (int j = 0; j < kategoria.getPocetSlov(); j++) {
                 nahodneSlova.add(kategoria.getSlovo(j));
@@ -191,8 +178,7 @@ public class Hra extends javax.swing.JFrame {
             this.casovac.stop();
         }
         this.vlozDoPanelov();
-       
-        Random random = new Random();
+
         this.zmenFarbuPozadia();
         this.jTextField1.setBackground(Farba.BIELA.getFarba());
         this.jButton1.setBackground(Farba.BIELA.getFarba());
@@ -413,26 +399,22 @@ public class Hra extends javax.swing.JFrame {
     
     
     public void hadaj(char znak) {
-        boolean spravneTlacidlo;
-        char uznak = znak;
         try {
             if (!this.kontrola.hadajPismeno(znak)) {
                 this.hangman.vykresliCast();
-                spravneTlacidlo = false;
-                
-                this.klavesnica.setColorOfButton(znak, spravneTlacidlo);
+
+                this.klavesnica.setColorOfButton(znak, false);
             } else {
                 
                 for (int i = 0; i < this.kontrola.getSuradnice().length; i++) { //7
                     
                     if (this.kontrola.getSuradnice()[i] == 1) {
-                        this.slovo.pridajUhadnutyZnak(uznak, i);
+                        this.slovo.pridajUhadnutyZnak(znak, i);
                         
                     }
                 }
                 this.kontrola.uhadol();
-                spravneTlacidlo = true;
-                this.klavesnica.setColorOfButton(znak, spravneTlacidlo);
+                this.klavesnica.setColorOfButton(znak, true);
                 
             }
         } catch (IOException ex) {
@@ -447,7 +429,7 @@ public class Hra extends javax.swing.JFrame {
         this.jTextField1.setEditable(false);
     }
     
-    public void koniecHry() throws IOException {
+    public void koniecHry() {
         this.koniec = true;
         this.start();
     }
@@ -458,17 +440,16 @@ public class Hra extends javax.swing.JFrame {
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
+        javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
         jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -491,11 +472,7 @@ public class Hra extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jButton1.setText("Ukončiť");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(evt -> jButton1ActionPerformed());
         jPanel2.add(jButton1, java.awt.BorderLayout.PAGE_END);
 
         jPanel1.add(jPanel2);
@@ -510,11 +487,7 @@ public class Hra extends javax.swing.JFrame {
         jPanel3.add(jSeparator1);
         jSeparator1.setBounds(0, 300, 470, 2);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jTextField1.addActionListener(evt -> jTextField1ActionPerformed());
         jPanel3.add(jTextField1);
         jTextField1.setBounds(0, 270, 470, 30);
 
@@ -537,7 +510,7 @@ public class Hra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed() {//GEN-FIRST:event_jButton1ActionPerformed
         if (this.jButton1.getText().equals("Ukončiť"))  {
             try {
                 this.menu.zobraz();
@@ -559,7 +532,7 @@ public class Hra extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextField1ActionPerformed() {//GEN-FIRST:event_jTextField1ActionPerformed
 
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -589,21 +562,16 @@ public class Hra extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Hra().setVisible(true);
-        });
+        java.awt.EventQueue.invokeLater(() -> new Hra().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
