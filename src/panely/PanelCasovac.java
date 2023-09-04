@@ -17,7 +17,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public class PanelCasovac extends JPanel implements IPanely, ActionListener {
     private int minuty;
@@ -74,11 +74,22 @@ public class PanelCasovac extends JPanel implements IPanely, ActionListener {
         String s;
         String m;
         Font font = new Font("Verdana", Font.BOLD, 20);
-        m = String.valueOf(this.minuty);
+
+        if (this.minuty < 10) {
+            m = String.valueOf("0" + this.minuty);
+        } else {
+            m = String.valueOf(this.minuty);
+        }
         g.setFont(font); 
         g.drawString(m, 90, 35);
-        g.drawString(":", 115, 35);
-        s = String.valueOf(this.sekundy);
+        g.drawString(" : ", 115, 35);
+
+        if (this.sekundy < 10) {
+            s = String.valueOf("0" + this.sekundy);
+        } else {
+            s = String.valueOf(this.sekundy);
+        }
+
         g.drawString(s, 130, 35);
     }
     

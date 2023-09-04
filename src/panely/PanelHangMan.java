@@ -13,7 +13,7 @@ import java.util.Objects;
 
 /**
  *
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public class PanelHangMan extends JLabel implements IPanely {
     private final Hra hra;

@@ -9,7 +9,7 @@ import java.awt.Color;
 
 /**
  *
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public enum Farba {
     ZELENA(Color.green),

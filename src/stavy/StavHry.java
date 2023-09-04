@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public abstract class StavHry extends JPanel {
     

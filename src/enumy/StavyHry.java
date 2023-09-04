@@ -12,7 +12,7 @@ import stavy.Vyhra;
 
 /**
  *
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public enum StavyHry {
     VYHRA(new Vyhra()),

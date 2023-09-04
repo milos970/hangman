@@ -7,7 +7,7 @@ package enumy;
 
 /**
  *
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public enum Obtiaznost {
     STREDNA("stredna"),

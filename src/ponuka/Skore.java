@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  *
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public class Skore implements Serializable {
     private final HashMap<String, Integer> hraci;

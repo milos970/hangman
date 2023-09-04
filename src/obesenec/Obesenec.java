@@ -9,12 +9,9 @@ import gui.HlavneMenu;
 import java.io.IOException;
 
 
-
-
-
 /**
  *  
- * @author MiloÅ¡
+ * @author Miloš¡
  */
 public class Obesenec {
 
