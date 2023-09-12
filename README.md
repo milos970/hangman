@@ -1,17 +1,17 @@
 <h1>Hangman</h1>
-<h2>Popis</h2>
+<h2>Description</h2>
 <p>
  <ul>
-  <li>Výber obtiažnosti</li>
-  <li>Časovač</li>
-  <li>Zápis dosiahnutého skóre do súboru</li>
+  <li>Choice of difficulty</li>
+  <li>Timer</li>
+  <li>Writing the achieved score to the file</li>
  </ul>
 </p>
-<h2>Požiadavky na spustenie</h2>
+<h2>Requirements/h2>
 <ul>
-  <li>Java Runtime Environment 20</li>
+  <li>JDK 20</li>
  </ul>
-<h2>Jazyky & frameworky & nástroje</h2>
+<h2>Languages & Frameworks & Tools</h2>
 <ul>
   <li>Java</li>
   <li>Java Swing</li>
