@@ -7,7 +7,7 @@
   <li>Writing the achieved score to the file</li>
  </ul>
 </p>
-<h2>Requirements/h2>
+<h2>Requirements</h2>
 <ul>
   <li>JDK 20</li>
  </ul>
