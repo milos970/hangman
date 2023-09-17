@@ -2,8 +2,8 @@
 <h2>Description</h2>
 <p>
  <ul>
-  <li>Choice of difficulty</li>
-  <li>Timer</li>
+  <li>Multiple difficulty levels</li>
+  <li>Countdown</li>
   <li>Writing the achieved score to the file</li>
  </ul>
 </p>
