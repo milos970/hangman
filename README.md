@@ -1,5 +1,5 @@
-<h1>Hangman</h1>
-<h2>Description</h2>
+# 🎮 Hangman
+## 📝 Description
 <p>
  <ul>
   <li>Multiple difficulty levels</li>
@@ -11,7 +11,11 @@
 <ul>
   <li>JDK 20</li>
  </ul>
-<h2>Languages & Frameworks & Tools</h2>
+ 
+## 🧰 Technologies
+
+
+### 🔹 Languages & Frameworks  
 <ul>
   <li>Java</li>
   <li>Java Swing</li>
