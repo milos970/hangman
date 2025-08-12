@@ -16,7 +16,7 @@ import java.io.*;
 public class Ukladanie {
     
     public static void zapis(Skore skore) throws IOException {
-        File subor = new File("save/Skore.bin");
+        File subor = new File("./score.bin");
         FileOutputStream stream = new FileOutputStream(subor);
         try (ObjectOutputStream zapis = new ObjectOutputStream(stream)) {
             zapis.writeObject(skore);
@@ -25,7 +25,7 @@ public class Ukladanie {
     
     public static Skore nacitaj() throws IOException, ClassNotFoundException {
         Skore skore;
-        File subor = new File("save/Skore.bin");
+        File subor = new File("./score.bin");
         if (subor.length() == 0) { // pokial je dany súbor prázdny tak sa nič nepokúša načítať
             return null;
         }

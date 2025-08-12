@@ -24,7 +24,7 @@ import javax.swing.*;
  */
 public class NovaHra extends javax.swing.JFrame implements FocusListener {
     private String meno;
-    private String obtiaznost;
+    private Obtiaznost obtiaznost;
     private final Color color;
     private final Skore skore;
     private final HlavneMenu menu;
@@ -218,7 +218,7 @@ public class NovaHra extends javax.swing.JFrame implements FocusListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        this.obtiaznost = Obtiaznost.STREDNA.getObtiaznost();
+        this.obtiaznost = Obtiaznost.STREDNA;
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -234,7 +234,7 @@ public class NovaHra extends javax.swing.JFrame implements FocusListener {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        this.obtiaznost = Obtiaznost.TAZKA.getObtiaznost();
+        this.obtiaznost = Obtiaznost.TAZKA;
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     /**

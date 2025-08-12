@@ -10,20 +10,7 @@ package enumy;
  * @author Miloš¡
  */
 public enum Obtiaznost {
-    STREDNA("stredna"),
-    TAZKA("tazka");
-    private final String obtiaznost;
-    
-    
-    Obtiaznost(String obtiaznost) {
-        this.obtiaznost = obtiaznost;
-    }
-    
-    
-    public String getObtiaznost() {
-        return this.obtiaznost;
-    }
-    
-    
-    
+    STREDNA,
+    TAZKA;
+
 }

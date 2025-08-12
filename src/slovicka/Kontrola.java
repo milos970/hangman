@@ -8,6 +8,8 @@ package slovicka;
 import gui.Hra;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Miloš
@@ -16,7 +18,7 @@ public class Kontrola {
     private char uhadnutyZnak;
     private final char[] abeceda;
     private char[] slovo;
-    private  ArrayList<Character>znakySlova;
+    private List<Character> znakySlova;
     private int[] pocetZnakov;
     private int[] suradnice;
     private String hadaneSlovo;

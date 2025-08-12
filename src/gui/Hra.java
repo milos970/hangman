@@ -22,13 +22,13 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 /**
- *
  * @author Miloš
  */
 public class Hra extends javax.swing.JFrame {
@@ -50,32 +50,29 @@ public class Hra extends javax.swing.JFrame {
     private final HlavneMenu menu;
     private int bonusoveBody;
     private boolean priratajBody;
-    
+
     /**
      * Creates new form HlavneMenu
      */
-    
-    public Hra(String meno, String obtiaznost, Color color, Skore skore, HlavneMenu menu) throws IOException {
+
+    public Hra(String meno, Obtiaznost obtiaznost, Color color, Skore skore, HlavneMenu menu) throws IOException {
         ImageIcon icon = new ImageIcon("src/obrazky/ikony/ikona.png");
         super.setIconImage(icon.getImage());
         super.setVisible(false);
-        this.koniec = false;
-       
+
         this.meno = meno;
-        
-        
-        if (!Obtiaznost.STREDNA.getObtiaznost().equals(obtiaznost)) {
-            if (Obtiaznost.TAZKA.getObtiaznost().equals(obtiaznost)) {
-                this.casovac = new PanelCasovac(this);
-                this.pocetPokusov = 2;
-                this.bonusoveBody = 3;            
-            }
-        }     else {
+
+        if (Obtiaznost.TAZKA == obtiaznost) {
+            this.casovac = new PanelCasovac(this);
+            this.pocetPokusov = 2;
+            this.bonusoveBody = 3;
+
+        } else {
             this.pocetPokusov = 3;
             this.bonusoveBody = 0;
         }
-        
-                   
+
+
         this.color = color;
 
         this.skore = skore;
@@ -95,7 +92,7 @@ public class Hra extends javax.swing.JFrame {
         }
         this.pocetHier = this.pocetSlov;
 
-        ArrayList<String> nahodneSlova = new ArrayList<>();
+        List<String> nahodneSlova = new LinkedList<>();
 
         for (String nazvyKategorii1 : nazvyKategorii) {
             Kategoria kategoria = this.zoznam.getKategoriu(nazvyKategorii1);
@@ -104,76 +101,76 @@ public class Hra extends javax.swing.JFrame {
             }
         }
 
-            
+
         this.list = new ArrayList<String>();
         for (int i = 0; i < this.pocetSlov; i++) {
             this.list.add(nahodneSlova.get(i));
         }
-        Collections.shuffle(this.list); 
+        Collections.shuffle(this.list);
         this.priratajBody = false;
 
         this.initComponents();
     }
-    
+
 
     private Hra() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-      
+
     private void zmenFarbuPozadia() {
         if (null != this.color) {
             this.jPanel1.setBackground(this.color);
-        }   
+        }
     }
-    
+
     private void vlozDoPanelov() {
         if (this.pokusy == null) {
             this.pokusy = new PanelPokusy(this, this.pocetPokusov);
             this.jPanel5.add(this.pokusy, BorderLayout.NORTH);
         }
-        
+
         if (this.klavesnica == null) {
             this.klavesnica = new PanelKlavesnica(this);
             this.jPanel4.add(this.klavesnica, BorderLayout.CENTER);
-            
+
         }
-        
+
         if (this.casovac != null) {
             this.casovac = new PanelCasovac(this);
             this.jPanel5.add(this.casovac, BorderLayout.SOUTH);
         }
-        
+
         if (this.hangman == null) {
             this.hangman = new PanelHangMan(this);
             this.jPanel2.add(this.hangman, BorderLayout.NORTH);
         }
-       
+
         if (this.slovo == null) {
             try {
                 this.slovo = new PanelSlovo();
             } catch (IOException ex) {
                 Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.jPanel6.add(this.slovo, BorderLayout.CENTER);           
+            this.jPanel6.add(this.slovo, BorderLayout.CENTER);
         }
-        
+
     }
-    
-    
+
+
     public void pridajBody() {
         this.skore.pridajBodyHracovi(this.meno, 1);
     }
-    
+
     /**
      * spusti hru
      */
-    public void start()  {
-       
+    public void start() {
+
         if (this.klavesnica != null) {
             this.obnovKlavesnicu();
-            
+
         }
-        
+
         if (this.casovac != null) {
             this.casovac.stop();
         }
@@ -182,30 +179,30 @@ public class Hra extends javax.swing.JFrame {
         this.zmenFarbuPozadia();
         this.jTextField1.setBackground(Farba.BIELA.getFarba());
         this.jButton1.setBackground(Farba.BIELA.getFarba());
-        
+
         this.pridajBodyHracovi();
-        
+
         if (this.pocetHier == 0) {
 
-            this.vyhra();            
+            this.vyhra();
             return;
         }
-        
+
         if (this.koniec) {
- 
-            this.prehra();                      
+
+            this.prehra();
             return;
         }
-        
-        if (this.pokusy.getPocetPokusov() < this.pocetPokusov ) {
-   
+
+        if (this.pokusy.getPocetPokusov() < this.pocetPokusov) {
+
             this.pokracuj();
             this.priratajBody = false;
-            this.pocetPokusov = this.pokusy.getPocetPokusov();   
+            this.pocetPokusov = this.pokusy.getPocetPokusov();
             return;
         }
-        
-        
+
+
         if (this.pocetHier == this.pocetSlov) {
             this.kontrola = new Kontrola(this);
             this.hangman.zobraz();
@@ -213,19 +210,19 @@ public class Hra extends javax.swing.JFrame {
             this.obnovKlavesnicu();
 
             this.slovo.zobraz();
-            
+
             if (this.casovac != null) {
                 this.casovac.nastavMinuty(0);
                 this.casovac.nastavSekundy(10);
                 this.casovac.zobraz();
             }
-            
-            
-            String g = (String)this.list.get(this.pocetHier - 1);
+
+
+            String g = (String) this.list.get(this.pocetHier - 1);
             this.pocetHier--;
             this.list.remove(g);
             try {
-          
+
                 this.vlozSlovoZKategorie(g, this.zoznam.getKategoriuPodlaSlova(g).getNazov());
             } catch (IOException ex) {
                 Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,53 +245,52 @@ public class Hra extends javax.swing.JFrame {
             this.hangman.zobraz();
             this.pokusy.zobraz();
             this.slovo.zobraz();
-            
-            
-         
-            String g = (String)this.list.get(this.pocetHier - 1);
+
+
+            String g = (String) this.list.get(this.pocetHier - 1);
             this.pocetHier--;
             this.list.remove(g);
             try {
-            
+
                 this.vlozSlovoZKategorie(g, this.zoznam.getKategoriuPodlaSlova(g).getNazov());
             } catch (IOException ex) {
                 Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-           
-        }       
+
+
+        }
     }
-    
+
     private void pridajBodyHracovi() {
         if (this.priratajBody) {
             this.skore.pridajBodyHracovi(this.meno, 1);
         }
-    }   
-                       
-    public void zobraz() {        
-        super.setLocationRelativeTo(null);
-        super.setVisible(true);        
     }
-        
+
+    public void zobraz() {
+        super.setLocationRelativeTo(null);
+        super.setVisible(true);
+    }
+
     /**
-     * metoda vloží do panela 4 panel prehra 
-     * zastaví časovač 
+     * metoda vloží do panela 4 panel prehra
+     * zastaví časovač
      * ukáže hladané slovo
      * uloži skore
      * zmení text tlacidla tejto instancie na spať
      */
-    private void prehra () {
+    private void prehra() {
         if (this.casovac != null) {
             this.casovac.stop();
         }
-                
+
         try {
             Ukladanie.zapis(this.skore);
         } catch (IOException ex) {
             Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
         }
-               
-                
+
+
         this.priratajBody = false;
         this.pridajBodyHracovi();
         StavHry stav = StavyHry.PREHRA.getStavHry();
@@ -302,15 +298,16 @@ public class Hra extends javax.swing.JFrame {
         this.jPanel4.add(stav);
         stav.zobraz();
         this.jButton1.setText("Spať do menu");
-        this.ukazHladaneSlovo(); 
+        this.ukazHladaneSlovo();
     }
-    
+
     private void obnovKlavesnicu() {
-        
+
         this.obnovPanel4();
         this.jPanel4.add(this.klavesnica);
         this.klavesnica.zobraz();
     }
+
     /**
      * prekresli panel pre nové komponenty
      */
@@ -319,14 +316,14 @@ public class Hra extends javax.swing.JFrame {
         this.jPanel4.revalidate();
         this.jPanel4.repaint();
     }
-    
+
     /**
-     * metoda vloží do panela 4 panel vyhra 
-     * zastaví časovač 
+     * metoda vloží do panela 4 panel vyhra
+     * zastaví časovač
      * zapíše body hráčovi a uloží
      */
     private void vyhra() {
-        
+
         if (this.casovac != null) {
             this.casovac.stop();
         }
@@ -336,35 +333,34 @@ public class Hra extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-                
+
+
         StavHry stav = StavyHry.VYHRA.getStavHry();
         this.obnovPanel4();
         this.jPanel4.add(stav);
         stav.zobraz();
-        
+
         if (this.pocetPokusov < 0) {
             this.ukazHladaneSlovo();
         }
         this.jButton1.setText("Spať do menu");
         this.jTextField1.setVisible(false);
-        this.jTextField1.setEditable(false);  
-        
+        this.jTextField1.setEditable(false);
+
         this.pridajBodyHracovi();
-            
+
     }
-    
+
     /**
-     * metoda vloží do panela 4 panel pokracuj 
-     * zastaví časovač 
+     * metoda vloží do panela 4 panel pokracuj
+     * zastaví časovač
      * ukáže hladané slovo
      */
-    private void pokracuj() 
-    {
-        
+    private void pokracuj() {
+
         if (this.casovac != null) {
             this.casovac.stop();
-        }                
+        }
         this.priratajBody = false;
         this.pridajBodyHracovi();
         StavHry stav = StavyHry.POKRACUJ.getStavHry();
@@ -372,32 +368,32 @@ public class Hra extends javax.swing.JFrame {
         this.jPanel4.add(stav);
         stav.vlozHru(this);
         stav.zobraz();
-        this.ukazHladaneSlovo();  
+        this.ukazHladaneSlovo();
         this.klavesnica.zobraz();
-        
+
     }
-    
-    
+
+
     public void znizPokusy() {
         this.priratajBody = false;
         this.pokusy.zniz();
         this.start();
     }
-    
+
     private void vlozSlovoZKategorie(String slovoZKategorie, String nazovKategorie) throws IOException {
         this.jTextField1.setText(nazovKategorie);
         this.jTextField1.setHorizontalAlignment(SwingConstants.CENTER);
         this.jTextField1.setVisible(true);
         this.jTextField1.setEditable(false);
-        
-       
+
+
         slovoZKategorie = slovoZKategorie.toUpperCase();
         char[] slovo1 = slovoZKategorie.toCharArray();
-        this.kontrola.pridajSlovo(slovo1);  
+        this.kontrola.pridajSlovo(slovo1);
         this.slovo.pocetCiar(this.kontrola.getPocetZnakovSlova());
     }
-    
-    
+
+
     public void hadaj(char znak) {
         try {
             if (!this.kontrola.hadajPismeno(znak)) {
@@ -405,35 +401,35 @@ public class Hra extends javax.swing.JFrame {
 
                 this.klavesnica.setColorOfButton(znak, false);
             } else {
-                
+
                 for (int i = 0; i < this.kontrola.getSuradnice().length; i++) { //7
-                    
+
                     if (this.kontrola.getSuradnice()[i] == 1) {
                         this.slovo.pridajUhadnutyZnak(znak, i);
-                        
+
                     }
                 }
                 this.kontrola.uhadol();
                 this.klavesnica.setColorOfButton(znak, true);
-                
+
             }
         } catch (IOException ex) {
             Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void ukazHladaneSlovo() {
         this.jTextField1.setText("Hladane slovo bolo: " + this.kontrola.getHadaneSlovo());
         this.jTextField1.setHorizontalAlignment(SwingConstants.CENTER);
         this.jTextField1.setVisible(true);
         this.jTextField1.setEditable(false);
     }
-    
+
     public void koniecHry() {
         this.koniec = true;
         this.start();
     }
-     
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -509,23 +505,23 @@ public class Hra extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void jButton1ActionPerformed() {//GEN-FIRST:event_jButton1ActionPerformed
-        if (this.jButton1.getText().equals("Ukončiť"))  {
+        if (this.jButton1.getText().equals("Ukončiť")) {
             try {
                 this.menu.zobraz();
                 super.dispose();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
-            }       
+            }
         }
-        
-        
-        if (this.jButton1.getText().equals("Spať do menu"))  {
+
+
+        if (this.jButton1.getText().equals("Spať do menu")) {
             try {
                 this.menu.zobraz();
                 super.dispose();
-               
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -543,7 +539,7 @@ public class Hra extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -552,12 +548,13 @@ public class Hra extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Hra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 
@@ -574,7 +571,6 @@ public class Hra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
 
 
 }

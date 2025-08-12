@@ -7,9 +7,9 @@ package panely;
 
 import enumy.Farba;
 import gui.Hra;
-import java.awt.Component;
-import java.awt.Dimension;
-import javax.swing.JButton;
+
+import java.awt.*;
+import java.util.HashMap;
 
 /**
  *
@@ -17,6 +17,7 @@ import javax.swing.JButton;
  */
 public class PanelKlavesnica extends javax.swing.JPanel implements IPanely {
     private final Hra hra;
+    private final HashMap<Character, Component> tlacidla;
     /**
      * Creates new form Klavesnica
      */
@@ -27,6 +28,17 @@ public class PanelKlavesnica extends javax.swing.JPanel implements IPanely {
         Dimension dimension = new Dimension(0, 0);
         super.setPreferredSize(dimension);
         this.initComponents();
+
+
+        this.tlacidla = new HashMap<>();
+
+        char znak = 'A';
+        for (Component c : this.getComponents())
+        {
+            tlacidla.put(znak, c);
+            ++znak;
+        }
+
     }
     
     
@@ -43,207 +55,21 @@ public class PanelKlavesnica extends javax.swing.JPanel implements IPanely {
      * nastaví ich farbu
      */
     private void povolVsetkyTlacidla() {
-        Component[] components = this.getComponents();
-        for (int i = 0; i < 26; i++) {
-            if (components[i].getClass().equals(JButton.class) ) {
-                components[i].setEnabled(true);
-                components[i].setBackground(Farba.BIELA.getFarba());
-                
-            } 
+        for (Component c : this.tlacidla.values())
+        {
+            c.setEnabled(true);
+            c.setBackground(Farba.BIELA.getFarba());
         }
-        
-        
     }
     
     /**
      * zmení farbu kliknutého buttona 
      * podla správneho znaku
      */
-    public void setColorOfButton(char znak, boolean spravneTlacidlo) {
-        switch (znak) {
-            case 'A' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton1.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton1.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'B' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton2.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton2.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'C' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton3.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton3.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'D' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton4.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton4.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'E' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton5.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton5.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'F' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton6.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton6.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'G' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton7.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton7.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'H' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton8.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton8.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'I' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton9.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton9.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'J' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton10.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton10.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'K' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton11.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton11.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'L' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton12.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton12.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'M' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton13.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton13.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'N' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton14.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton14.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'O' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton15.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton15.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'P' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton16.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton16.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'Q' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton17.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton17.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'R' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton18.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton18.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'S' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton19.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton19.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'T' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton20.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton20.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'U' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton21.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton21.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'V' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton22.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton22.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'W' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton23.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton23.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'X' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton24.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton24.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'Y' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton25.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton25.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-            case 'Z' -> {
-                if (!spravneTlacidlo) {
-                    this.jButton26.setBackground(Farba.CERVENA.getFarba());
-                } else {
-                    this.jButton26.setBackground(Farba.ZELENA.getFarba());
-                }
-            }
-        }
+    public void setColorOfButton(char znak, boolean spravneTlacidlo)
+    {
+        Component component = this.tlacidla.get(znak);
+        component.setBackground(spravneTlacidlo ? Farba.ZELENA.getFarba() : Farba.CERVENA.getFarba());
     }
     
     /**
