@@ -20,7 +20,12 @@
   <li>Java</li>
   <li>Java Swing</li>
   <li>SQLite</li>
-  <li>NetBeans</li>
-  <li>Ant</li>
+  
   <li>UML</li>
 </ul>
+
+### 🔹 Development & Testing
+ <ul>
+  <li>NetBeans</li>
+  <li>Ant</li>
+ </ul>
