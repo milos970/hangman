@@ -19,6 +19,7 @@
 <ul>
   <li>Java</li>
   <li>Java Swing</li>
+  <li>SQLite</li>
   <li>NetBeans</li>
   <li>Ant</li>
   <li>UML</li>
