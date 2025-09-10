@@ -5,44 +5,32 @@
  */
 package gui;
 
-import obesenec.Ukladanie;
 import enumy.Farba;
 import java.awt.Color;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.*;
 
 import ponuka.NovaHra;
 import ponuka.Skore;
+import ponuka.Ukladanie;
 
 /**
  *
  * @author Miloš
  */
 public class HlavneMenu extends javax.swing.JFrame {
-    private  Skore skore;
     private boolean pravda = true;
     private Color color;
+    private static final String PATH = "src/obrazky/ikony/ikona.png";
     /**
      * Creates new form HlavneMenu
      */
     public HlavneMenu() throws IOException {
-        ImageIcon icon = new ImageIcon("src/obrazky/ikony/ikona.png");
+        ImageIcon icon = new ImageIcon(PATH);
         super.setIconImage(icon.getImage());
-        //pokial nenačíta žiaden súbor tak vytvorí novú inštanciu triedy skore
-        try {
-            if (Ukladanie.nacitaj() == null) {
-                this.skore = new Skore();
-            } else {
-                this.skore = Ukladanie.nacitaj();
-            }
-        } catch (FileNotFoundException | ClassNotFoundException ex) {
-            Logger.getLogger(HlavneMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         super.setVisible(false);
         this.initComponents();
     }
@@ -220,12 +208,19 @@ public class HlavneMenu extends javax.swing.JFrame {
             this.jTextArea1.setVisible(true);
             this.pravda = false;
         }
-       
-        this.jTextArea1.setText(this.skore.vypis());    
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        List<Skore> skoreList = Ukladanie.getInstance().nacitajSkore();
+
+        StringBuilder sb = new StringBuilder();
+        for (Skore skore : skoreList) {
+            sb.append(skore.toString()).append("\n");
+        }
+
+        this.jTextArea1.setText(sb.toString());
+    }
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        NovaHra novaHra = new NovaHra(this.color, this.skore, this);
+        NovaHra novaHra = new NovaHra(this.color, this);
         novaHra.zobraz();
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -251,7 +246,7 @@ public class HlavneMenu extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                  UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HlavneMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         }
         //</editor-fold>
 
@@ -260,7 +255,7 @@ public class HlavneMenu extends javax.swing.JFrame {
             try {
                 new HlavneMenu().setVisible(true);
             } catch (IOException ex) {
-                Logger.getLogger(HlavneMenu.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         });
     }

@@ -8,14 +8,12 @@ package ponuka;
 import gui.HlavneMenu;
 import gui.Hra;
 import enumy.Obtiaznost;
-import obesenec.Ukladanie;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.*;
 
 /**
@@ -26,18 +24,16 @@ public class NovaHra extends javax.swing.JFrame implements FocusListener {
     private String meno;
     private Obtiaznost obtiaznost;
     private final Color color;
-    private final Skore skore;
     private final HlavneMenu menu;
     
     /**
      * Creates new form NovaHra
      */
-    public NovaHra(Color color, Skore skore, HlavneMenu menu) {
+    public NovaHra(Color color, HlavneMenu menu) {
         ImageIcon icon = new ImageIcon("src/obrazky/ikony/ikona.png"); // nastaví ikonu framu
         super.setIconImage(icon.getImage());
         super.setVisible(false);
         super.setTitle("Nová hra");
-        this.skore = skore;
         this.color = color;
         this.menu = menu;
         this.initComponents();
@@ -75,6 +71,7 @@ public class NovaHra extends javax.swing.JFrame implements FocusListener {
             
             
             this.jLabel3.setText("Max. 10 znakov");
+            this.jLabel3.setForeground(Color.RED);
             this.jLabel3.setVisible(true);
             k++;
         } else {
@@ -92,21 +89,20 @@ public class NovaHra extends javax.swing.JFrame implements FocusListener {
         
         if (k == 0) {
             try {
-                if (!this.skore.pridajMenoHraca(this.meno)) {
-                    
+                if (!Ukladanie.getInstance().jeMenoUnikatne(this.meno)) {
                     this.jLabel3.setText("Duplikat, zvol ine meno !");
+                    this.jLabel3.setForeground(Color.RED);
                     this.jLabel3.setVisible(true);
                     return;
                 }
-                Ukladanie.zapis(this.skore);
                 this.menu.skry();
-                Hra hra = new Hra(this.meno, this.obtiaznost, this.color, this.skore, this.menu);
+                Hra hra = new Hra(this.meno, this.obtiaznost, this.color, this.menu);
                 hra.zobraz();
                 
                 hra.start();
                 super.dispose();
             } catch (IOException ex) {
-                Logger.getLogger(NovaHra.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
                
@@ -255,7 +251,7 @@ public class NovaHra extends javax.swing.JFrame implements FocusListener {
             }
         } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException |
                  InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NovaHra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         }
         //</editor-fold>
 

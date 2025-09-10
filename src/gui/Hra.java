@@ -9,9 +9,9 @@ package gui;
 import enumy.Farba;
 import enumy.Obtiaznost;
 import enumy.StavyHry;
-import obesenec.Ukladanie;
 import panely.*;
 import ponuka.Skore;
+import ponuka.Ukladanie;
 import slovicka.Kategoria;
 import slovicka.Kontrola;
 import slovicka.Zoznam;
@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -45,7 +43,7 @@ public class Hra extends javax.swing.JFrame {
     private final Color color;
     private final String meno;
     private boolean koniec;
-    private final Skore skore;
+    private int body;
     private int pocetPokusov;
     private final HlavneMenu menu;
     private int bonusoveBody;
@@ -55,7 +53,7 @@ public class Hra extends javax.swing.JFrame {
      * Creates new form HlavneMenu
      */
 
-    public Hra(String meno, Obtiaznost obtiaznost, Color color, Skore skore, HlavneMenu menu) throws IOException {
+    public Hra(String meno, Obtiaznost obtiaznost, Color color, HlavneMenu menu) throws IOException {
         ImageIcon icon = new ImageIcon("src/obrazky/ikony/ikona.png");
         super.setIconImage(icon.getImage());
         super.setVisible(false);
@@ -74,8 +72,6 @@ public class Hra extends javax.swing.JFrame {
 
 
         this.color = color;
-
-        this.skore = skore;
 
         this.menu = menu;
 
@@ -149,7 +145,7 @@ public class Hra extends javax.swing.JFrame {
             try {
                 this.slovo = new PanelSlovo();
             } catch (IOException ex) {
-                Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
+
             }
             this.jPanel6.add(this.slovo, BorderLayout.CENTER);
         }
@@ -158,7 +154,7 @@ public class Hra extends javax.swing.JFrame {
 
 
     public void pridajBody() {
-        this.skore.pridajBodyHracovi(this.meno, 1);
+        this.body++;
     }
 
     /**
@@ -225,7 +221,7 @@ public class Hra extends javax.swing.JFrame {
 
                 this.vlozSlovoZKategorie(g, this.zoznam.getKategoriuPodlaSlova(g).getNazov());
             } catch (IOException ex) {
-                Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
+
             }
             if (this.casovac != null) {
                 this.casovac.nastavMinuty(1);
@@ -254,7 +250,7 @@ public class Hra extends javax.swing.JFrame {
 
                 this.vlozSlovoZKategorie(g, this.zoznam.getKategoriuPodlaSlova(g).getNazov());
             } catch (IOException ex) {
-                Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
 
@@ -263,7 +259,7 @@ public class Hra extends javax.swing.JFrame {
 
     private void pridajBodyHracovi() {
         if (this.priratajBody) {
-            this.skore.pridajBodyHracovi(this.meno, 1);
+            this.body++;
         }
     }
 
@@ -284,12 +280,9 @@ public class Hra extends javax.swing.JFrame {
             this.casovac.stop();
         }
 
-        try {
-            Ukladanie.zapis(this.skore);
-        } catch (IOException ex) {
-            Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        System.out.println("PREHRA");
 
+        Ukladanie.getInstance().ulozSkore(new Skore(this.meno, this.body));
 
         this.priratajBody = false;
         this.pridajBodyHracovi();
@@ -327,28 +320,22 @@ public class Hra extends javax.swing.JFrame {
         if (this.casovac != null) {
             this.casovac.stop();
         }
-        this.skore.pridajBodyHracovi(this.meno, this.bonusoveBody);
-        try {
-            Ukladanie.zapis(this.skore);
-        } catch (IOException ex) {
-            Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+        this.body += this.bonusoveBody;
 
         StavHry stav = StavyHry.VYHRA.getStavHry();
         this.obnovPanel4();
         this.jPanel4.add(stav);
         stav.zobraz();
 
-        if (this.pocetPokusov < 0) {
-            this.ukazHladaneSlovo();
-        }
+        System.out.println(5555558);
+        Ukladanie.getInstance().ulozSkore(new Skore(this.meno, this.body));
+        this.ukazHladaneSlovo();
+
         this.jButton1.setText("Spať do menu");
         this.jTextField1.setVisible(false);
         this.jTextField1.setEditable(false);
-
         this.pridajBodyHracovi();
-
     }
 
     /**
@@ -414,7 +401,7 @@ public class Hra extends javax.swing.JFrame {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 
@@ -512,7 +499,7 @@ public class Hra extends javax.swing.JFrame {
                 this.menu.zobraz();
                 super.dispose();
             } catch (InterruptedException ex) {
-                Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
 
@@ -523,7 +510,7 @@ public class Hra extends javax.swing.JFrame {
                 super.dispose();
 
             } catch (InterruptedException ex) {
-                Logger.getLogger(Hra.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -550,7 +537,7 @@ public class Hra extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Hra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         }
         //</editor-fold>
         //</editor-fold>

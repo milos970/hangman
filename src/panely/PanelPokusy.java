@@ -12,8 +12,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JPanel;
 
 /**
@@ -54,7 +53,7 @@ public class PanelPokusy extends JPanel implements IPanely {
             try {
                 this.koniec();
             } catch (IOException ex) {
-                Logger.getLogger(PanelPokusy.class.getName()).log(Level.SEVERE, null, ex);
+
             }            
         }       
     }
