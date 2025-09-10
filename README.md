@@ -14,12 +14,30 @@
  
 ## 🧰 Technologies
 
+<table><tr><td valign="top" width="33%">
 
-### 🔹 Languages & Frameworks  
-<ul>
-  <li>Java</li>
+
+
+### Languages & Frameworks  
+<div align="left">
+  <ul style="list-style-type: disc; display: inline-block;">
+    <li>Java</li>
   <li>Java Swing</li>
-  <li>NetBeans</li>
-  <li>Ant</li>
+  <li>SQLite</li>
   <li>UML</li>
-</ul>
+  </ul>
+</div>
+
+
+</td><td valign="top" width="33%">
+
+
+
+###  Development & Testing   
+<div align="left">
+  <ul style="list-style-type: disc; display: inline-block;">
+    <li>NetBeans</li>
+  <li>Ant</li>
+  </ul>
+</div>
+
