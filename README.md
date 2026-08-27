@@ -2,39 +2,29 @@
 
 > A desktop Hangman game built with Java Swing, featuring a countdown timer, multiple difficulty levels and persistent score storage using SQLite.
 
-
-
-
+![Java](https://img.shields.io/badge/Java-20+-ED8B00?style=flat-square\&logo=openjdk\&logoColor=white)
+![Swing](https://img.shields.io/badge/Java%20Swing-GUI-007396?style=flat-square)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square\&logo=sqlite\&logoColor=white)
+![JDBC](https://img.shields.io/badge/JDBC-Database%20Access-ED8B00?style=flat-square)
+![NetBeans](https://img.shields.io/badge/NetBeans-1B6AC6?style=flat-square\&logo=apache-netbeans-ide\&logoColor=white)
 
 ---
-
-
 
 ## ✨ Features
 
-* ⏱️ Countdown timer
-* 🎯 Multiple difficulty levels
-* 💾 Persistent score storage using SQLite
-* 🏆 High score tracking
-* ❌ Input validation
-* 🧩 MVC architecture
-
----
-
-## 🛠️ Tech Stack
-
-* **Java 20+**
-* **Java Swing** — graphical user interface
-* **SQLite** — local database
-* **JDBC** — database connectivity
-* **Apache NetBeans** — development environment
-* **Git / GitHub** — version control
+* ⏱️ **Countdown Timer** — Adds a time-based challenge to each game.
+* 🎯 **Multiple Difficulty Levels** — Choose between different gameplay difficulties.
+* 🏆 **Score & High Score Tracking** — Calculate and save game results.
+* 💾 **Persistent Score Storage** — Store scores locally using SQLite.
+* ❌ **Input Validation** — Prevent invalid and repeated letter guesses.
+* 🔄 **Game Restart** — Start a new game without restarting the application.
+* 🎮 **Game State Management** — Handles active, won, lost and timed-out states.
 
 ---
 
 ## 🏗️ Architecture
 
-The application follows the **MVC (Model-View-Controller)** architecture.
+The application follows the **MVC (Model-View-Controller)** architecture, separating the graphical interface, game logic and data access.
 
 ```text
 ┌─────────────────────┐
@@ -69,7 +59,7 @@ The application uses **SQLite** for persistent local score storage.
 
 Database operations are handled through **JDBC**.
 
-The database stores information such as:
+The database stores:
 
 * Player name
 * Score
@@ -77,7 +67,7 @@ The database stores information such as:
 * Game result
 * Date/time
 
-Example database structure:
+### Database Structure
 
 ```text
 scores
@@ -93,12 +83,12 @@ scores
 
 ## 🧠 Technical Highlights
 
-* Implemented **MVC architecture** to separate the graphical interface, game logic and data access.
-* Integrated **SQLite with JDBC** for persistent score storage.
-* Implemented **game state management** for active, won, lost and timed-out games.
-* Added **input validation** to prevent invalid and repeated letter guesses.
-* Implemented a **countdown timer** integrated with the Swing application.
-* Implemented a **difficulty system** affecting the gameplay experience.
+* Designed the application using the **MVC architecture**.
+* Integrated **SQLite with JDBC** for persistent data storage.
+* Implemented **game state management** for different game outcomes.
+* Implemented a **countdown timer** using Swing.
+* Added **input validation** for user guesses.
+* Implemented a **difficulty system** affecting gameplay and scoring.
 
 ---
 
@@ -119,15 +109,13 @@ cd hangman
 
 ### 2. Open the project
 
-Open the project in **Apache NetBeans**.
+Open the project in **Apache NetBeans**:
 
 ```text
 File → Open Project
 ```
 
-### 3. Run
-
-Run the project from NetBeans:
+### 3. Run the application
 
 ```text
 Run → Run Project
@@ -145,14 +133,40 @@ F6
 
 ### Main Menu
 
+![Main Menu](docs/screenshots/main-menu.png)
+
 ### Gameplay
 
+![Gameplay](docs/screenshots/gameplay.png)
+
 ### Scores
+
+![Scores](docs/screenshots/scores.png)
 
 ---
 
 ## 🔮 Future Improvements
 
 * [ ] Add word categories
+* [ ] Add sound effects
 * [ ] Improve scoring system
 * [ ] Add unit tests
+* [ ] Create a standalone application installer
+
+---
+
+## 👨‍💻 Author
+
+**Milos**
+
+Junior Software Developer
+
+[GitHub](https://github.com/milos970)
+
+---
+
+## ⭐ Project Status
+
+✅ **Completed**
+
+No major features are currently planned.
