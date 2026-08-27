@@ -145,15 +145,7 @@ F6
 
 ---
 
-## 🔮 Future Improvements
 
-* [ ] Add word categories
-* [ ] Add sound effects
-* [ ] Improve scoring system
-* [ ] Add unit tests
-* [ ] Create a standalone application installer
-
----
 
 ## 👨‍💻 Author
 
