@@ -16,6 +16,8 @@ Hangman is a desktop word-guessing game developed in Java Swing.
 
 The game features multiple difficulty levels, a countdown timer, input validation and persistent score storage using SQLite. It also uses an MVC-based structure to separate the user interface, game logic and data management.
 
+---
+
 ## ✨ Features
 
 * ⏱️ **Countdown Timer** — Adds a time-based challenge to each game.
